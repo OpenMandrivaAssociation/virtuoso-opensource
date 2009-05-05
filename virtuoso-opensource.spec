@@ -169,6 +169,3 @@ mv %{buildroot}%{_var}/lib/virtuoso/db/virtuoso.ini %{buildroot}%{_sysconfdir}/v
 
 %clean
 rm -rf %{buildroot}
-
-%define date    %(echo `LC_ALL="C" date +"%a %b %d %Y"`)
-
