@@ -1,5 +1,6 @@
 %define name        virtuoso-opensource
 %define rel         1
+%define Werror_cflags %nil
 
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Name:       %{name}
@@ -137,7 +138,7 @@ functionality.
 %prep rm -rf %{buildroot}
 
 %setup -q -n %{name}-%{version}
-%patch0 -p1
+#%patch0 -p1
 %patch1 -p0
 
 %build
