@@ -1,5 +1,5 @@
 %define name        virtuoso-opensource
-%define rel         3
+%define rel         4
 %define Werror_cflags %nil
 
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
@@ -117,7 +117,7 @@ functionality.
 %{_datadir}/virtuoso/vad/rdf_mappers_dav.vad
 #%{_datadir}/virtuoso/vad/sparql_demo_dav.vad
 #%{_datadir}/virtuoso/vad/syncml_dav.vad
-#%{_datadir}/virtuoso/vad/tutorial_dav.vad
+%{_datadir}/virtuoso/vad/tutorial_dav.vad
 
 #--------------------------------------------------------------------
 
