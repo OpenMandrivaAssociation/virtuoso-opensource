@@ -1,5 +1,5 @@
 %define name        virtuoso-opensource
-%define rel         1
+%define rel         2
 %define Werror_cflags %nil
 
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
@@ -173,7 +173,6 @@ rm -rf %{buildroot}
 %makeinstall_std 
 mkdir -p %{buildroot}%{_libdir}/virtuoso/plugins
 mv %{buildroot}%{_libdir}/*.la %{buildroot}%{_libdir}/virtuoso/plugins/
-#mv %{buildroot}%{_libdir}/*.a %{buildroot}%{_libdir}/virtuoso/plugins/
 rm -fr %{buildroot}%{_libdir}/*.a
 mv %{buildroot}%{_libdir}/*.so %{buildroot}%{_libdir}/virtuoso/plugins/
 mkdir -p %{buildroot}%{_libdir}/virtuoso/jars
