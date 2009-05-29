@@ -13,6 +13,7 @@ Patch1:     virtuoso-opensource-5.0.11-fix-make.patch
 Patch2:     build-sanely.diff
 URL:        http://virtuoso.openlinksw.com/
 BuildRoot:  %{_tmppath}/%{name}-%{version}
+BuildRequires:  openssl
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  bison
