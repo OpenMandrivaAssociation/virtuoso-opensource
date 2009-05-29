@@ -97,7 +97,7 @@ functionality.
 #%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.la
 #%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.so
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.so
-#%{_datadir}/virtuoso/vad/bpel_dav.vad
+%{_datadir}/virtuoso/vad/bpel_dav.vad
 #%{_datadir}/virtuoso/vad/demo_dav.vad
 #%{_datadir}/virtuoso/vad/doc_dav.vad
 #%{_datadir}/virtuoso/vad/isparql_dav.vad
