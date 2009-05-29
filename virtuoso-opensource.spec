@@ -142,7 +142,7 @@ functionality.
 %package -n %name-devel
 Summary: Devel files from %name
 Group: Development/Databases
-
+Requires: %name
 %description -n %name-devel
 Virtuoso is a scalable cross-platform server that combines SQL/RDF/XML
 Data Management with Web Application Server and Web Services Platform
