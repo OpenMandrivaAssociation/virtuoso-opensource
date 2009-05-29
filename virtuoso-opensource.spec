@@ -114,7 +114,7 @@ functionality.
 #%{_datadir}/virtuoso/vad/ods_polls_dav.vad
 #%{_datadir}/virtuoso/vad/ods_webmail_dav.vad
 #%{_datadir}/virtuoso/vad/ods_wiki_dav.vad
-#%{_datadir}/virtuoso/vad/rdf_mappers_dav.vad
+%{_datadir}/virtuoso/vad/rdf_mappers_dav.vad
 #%{_datadir}/virtuoso/vad/sparql_demo_dav.vad
 #%{_datadir}/virtuoso/vad/syncml_dav.vad
 #%{_datadir}/virtuoso/vad/tutorial_dav.vad
@@ -137,6 +137,19 @@ functionality.
 %{_libdir}/virtuoso/jars/jdbc4.0/*.jar
 %{_libdir}/virtuoso/jars/jena/*.jar
 %{_libdir}/virtuoso/jars/sesame/*.jar
+
+#--------------------------------------------------------------------
+%package -n %name-devel
+Summary: Devel files from %name
+Group: Development/Databases
+
+%description -n %name-devel
+Virtuoso is a scalable cross-platform server that combines SQL/RDF/XML
+Data Management with Web Application Server and Web Services Platform
+functionality.
+
+%files -n %name-devel
+%defattr(0644,root,root,0755)
 
 #--------------------------------------------------------------------
 
