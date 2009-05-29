@@ -1,5 +1,5 @@
 %define name        virtuoso-opensource
-%define rel         2
+%define rel         3
 %define Werror_cflags %nil
 
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
