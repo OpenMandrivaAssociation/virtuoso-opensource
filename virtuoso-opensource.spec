@@ -150,6 +150,7 @@ functionality.
 
 %files -n %name-devel
 %defattr(0644,root,root,0755)
+%_includedir/*
 
 #--------------------------------------------------------------------
 
@@ -183,6 +184,9 @@ mv %{buildroot}%{_libdir}/jena %{buildroot}%{_libdir}/virtuoso/jars/jena
 mv %{buildroot}%{_libdir}/sesame %{buildroot}%{_libdir}/virtuoso/jars/sesame
 #mkdir -p %{buildroot}%{_sysconfdir}/virtuoso
 #mv %{buildroot}%{_var}/lib/virtuoso/db/virtuoso.ini %{buildroot}%{_sysconfdir}/virtuoso/
+
+mkdir -p %{buildroot}%_includedir
+cp libsrc/odbcsdk/include/*  %{buildroot}%_includedir/
 
 %clean
 rm -rf %{buildroot}
