@@ -134,8 +134,8 @@ functionality.
 %{_libdir}/virtuoso/jars/jdbc2.0/*.jar
 %{_libdir}/virtuoso/jars/jdbc3.0/*.jar
 %{_libdir}/virtuoso/jars/jdbc4.0/*.jar
-#%{_libdir}/virtuoso/jars/jena/*.jar
-#%{_libdir}/virtuoso/jars/sesame/*.jar
+%{_libdir}/virtuoso/jars/jena/*.jar
+%{_libdir}/virtuoso/jars/sesame/*.jar
 
 #--------------------------------------------------------------------
 
@@ -165,8 +165,8 @@ mkdir -p %{buildroot}%{_libdir}/virtuoso/jars
 mv %{buildroot}%{_libdir}/jdbc-2.0 %{buildroot}%{_libdir}/virtuoso/jars/jdbc2.0
 mv %{buildroot}%{_libdir}/jdbc-3.0 %{buildroot}%{_libdir}/virtuoso/jars/jdbc3.0
 mv %{buildroot}%{_libdir}/jdbc-4.0 %{buildroot}%{_libdir}/virtuoso/jars/jdbc4.0
-#mv %{buildroot}%{_libdir}/jena %{buildroot}%{_libdir}/virtuoso/jars/jena
-#mv %{buildroot}%{_libdir}/sesame %{buildroot}%{_libdir}/virtuoso/jars/sesame
+mv %{buildroot}%{_libdir}/jena %{buildroot}%{_libdir}/virtuoso/jars/jena
+mv %{buildroot}%{_libdir}/sesame %{buildroot}%{_libdir}/virtuoso/jars/sesame
 #mkdir -p %{buildroot}%{_sysconfdir}/virtuoso
 #mv %{buildroot}%{_var}/lib/virtuoso/db/virtuoso.ini %{buildroot}%{_sysconfdir}/virtuoso/
 
