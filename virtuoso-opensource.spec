@@ -1,5 +1,5 @@
 %define name        virtuoso-opensource
-%define rel         4
+%define rel        5 
 %define Werror_cflags %nil
 
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
@@ -48,6 +48,8 @@ also available as part of Virtuoso's SOA suite.
 %defattr(0644,root,root,0755)
 %doc AUTHORS CREDITS ChangeLog NEWS README
 %attr(0755,root,root) %{_bindir}/*
+#conflicts with unixODBC
+%exclude %{_bindir}/isql
 #%{_sysconfdir}/virtuoso/virtuoso.ini
 
 #--------------------------------------------------------------------
@@ -63,7 +65,7 @@ functionality.
 
 %files -n %name-conductor
 %defattr(0644,root,root,0755)
-#%{_datadir}/virtuoso/vad/conductor_dav.vad
+%{_datadir}/virtuoso/vad/conductor_dav.vad
 #%{_var}/lib/virtuoso/vsp/*.css
 #%{_var}/lib/virtuoso/vsp/*.html
 #%{_var}/lib/virtuoso/vsp/robots.txt
