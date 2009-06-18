@@ -1,16 +1,15 @@
-%define name        virtuoso-opensource
-%define rel        5 
-%define Werror_cflags %nil
-
-Summary:    OpenLink Virtuoso Database System Open-Source Edition
-Name:       %{name}
+Name:       virtuoso-opensource
 Version:    5.0.11
-Release:    %mkrel %{rel}
+Release:    %mkrel 6
 License:    GPLv2
+Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
 Source0:    %{name}-%{version}.tar.gz
 Patch1:     virtuoso-opensource-5.0.11-fix-make.patch
 Patch2:     build-sanely.diff
+Patch3:     virtuoso-opensource-5.0.11-wfortmat-fixes.patch
+Patch4:     virtuoso-opensource-5.0.11-unixodbc.patch
+Patch5:     virtuoso-opensource-5.0.11-system-libs.patch
 URL:        http://virtuoso.openlinksw.com/
 BuildRoot:  %{_tmppath}/%{name}-%{version}
 BuildRequires:  openssl
@@ -21,6 +20,9 @@ BuildRequires:  flex
 BuildRequires:  gperf
 BuildRequires:  libxml2-devel
 BuildRequires:  openssl-devel
+BuildRequires:  unixODBC-devel
+BuildRequires:  zlib-devel
+BuildRequires:  tidy-devel
 
 Suggests:       %name-conductor
 Suggests:       %name-applications
@@ -142,13 +144,17 @@ functionality.
 
 #--------------------------------------------------------------------
 
-%prep rm -rf %{buildroot}
+%prep
 
 %setup -q -n %{name}-%{version}
 %patch1 -p0
 %patch2 -p0
+%patch3 -p0 -b .wformat
+%patch4 -p0 -b .unixodbc
+%patch5 -p0 -b .systemlibs
+
 %build
-# autogen.sh because of patching Makefile.am
+# autogen.sh because of patching Makefile.am and configure to unixODBC
 ./autogen.sh
 
 %configure
