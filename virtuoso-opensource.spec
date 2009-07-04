@@ -2,7 +2,7 @@
 
 Name:       virtuoso-opensource
 Version:    5.0.11
-Release:    %mkrel 7
+Release:    %mkrel 8
 License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
@@ -97,6 +97,7 @@ functionality.
 #%{_libdir}/virtuoso/plugins/*.a
 #%{_libdir}/virtuoso/hosting/*.a
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.la
+%attr(0755,root,root) %{_libdir}/*.la
 #%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.la
 #%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.so
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.so
@@ -166,6 +167,8 @@ rm -rf %{buildroot}
 %makeinstall_std 
 mkdir -p %{buildroot}%{_libdir}/virtuoso/plugins
 mv %{buildroot}%{_libdir}/*.la %{buildroot}%{_libdir}/virtuoso/plugins/
+cp -f %{buildroot}%{_libdir}/virtuoso/plugins/* %{buildroot}%{_libdir}/
+
 rm -fr %{buildroot}%{_libdir}/*.a
 mv %{buildroot}%{_libdir}/*.so %{buildroot}%{_libdir}/virtuoso/plugins/
 mkdir -p %{buildroot}%{_libdir}/virtuoso/jars
