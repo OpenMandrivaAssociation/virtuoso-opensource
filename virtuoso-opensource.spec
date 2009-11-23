@@ -9,6 +9,7 @@ Group:      Development/Databases
 Source0:    %{name}-%{version}.tar.gz
 Patch1:     virtuoso-opensource-5.0.11-fix-make.patch
 Patch4:     virtuoso-opensource-5.0.11-extern-iodbc.patch
+Patch5:     virtuoso-opensource-5.0.12-fix-build.patch
 URL:        http://virtuoso.openlinksw.com/
 BuildRoot:  %{_tmppath}/%{name}-%{version}
 BuildRequires: openssl
@@ -147,6 +148,7 @@ functionality.
 %setup -q -n %{name}-%{version}
 %patch1 -p0
 %patch4 -p0 -b .iodbc
+%patch5 -p0
 
 %build
 # autogen.sh because of patching Makefile.am and configure to unixODBC
