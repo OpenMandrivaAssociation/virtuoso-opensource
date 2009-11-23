@@ -8,7 +8,6 @@ Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
 Source0:    %{name}-%{version}.tar.gz
 Patch1:     virtuoso-opensource-5.0.11-fix-make.patch
-Patch2:     build-sanely.diff
 Patch4:     virtuoso-opensource-5.0.11-extern-iodbc.patch
 URL:        http://virtuoso.openlinksw.com/
 BuildRoot:  %{_tmppath}/%{name}-%{version}
@@ -147,7 +146,6 @@ functionality.
 
 %setup -q -n %{name}-%{version}
 %patch1 -p0
-#%patch2 -p0
 %patch4 -p0 -b .iodbc
 
 %build
