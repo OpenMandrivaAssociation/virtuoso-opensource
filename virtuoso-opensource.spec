@@ -1,15 +1,14 @@
 %define Werror_cflags %nil
 
 Name:       virtuoso-opensource
-Version:    5.0.11
-Release:    %mkrel 8
+Version:    5.0.12
+Release:    %mkrel 1
 License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
 Source0:    %{name}-%{version}.tar.gz
 Patch1:     virtuoso-opensource-5.0.11-fix-make.patch
 Patch2:     build-sanely.diff
-Patch3:     virtuoso-opensource-5.0.11-wfortmat-fixes.patch
 Patch4:     virtuoso-opensource-5.0.11-extern-iodbc.patch
 URL:        http://virtuoso.openlinksw.com/
 BuildRoot:  %{_tmppath}/%{name}-%{version}
@@ -51,7 +50,7 @@ also available as part of Virtuoso's SOA suite.
 %attr(0755,root,root) %{_bindir}/*
 #conflicts with unixODBC
 %exclude %{_bindir}/isql
-#%{_sysconfdir}/virtuoso/virtuoso.ini
+%{_sysconfdir}/virtuoso/virtuoso.ini
 
 #--------------------------------------------------------------------
 
@@ -67,18 +66,18 @@ functionality.
 %files -n %name-conductor
 %defattr(0644,root,root,0755)
 %{_datadir}/virtuoso/vad/conductor_dav.vad
-#%{_var}/lib/virtuoso/vsp/*.css
-#%{_var}/lib/virtuoso/vsp/*.html
-#%{_var}/lib/virtuoso/vsp/robots.txt
-#%{_var}/lib/virtuoso/vsp/admin/index_left.vsp
-#%{_var}/lib/virtuoso/vsp/images/*.gif
-#%{_var}/lib/virtuoso/vsp/images/*.jpg
-#%{_var}/lib/virtuoso/vsp/images/*.png
-#%{_var}/lib/virtuoso/vsp/vsmx/*.gif
-#%{_var}/lib/virtuoso/vsp/vsmx/*.jpg
-#%{_var}/lib/virtuoso/vsp/vsmx/*.vspx
-#%{_var}/lib/virtuoso/vsp/vsmx/*.xsl
-#%{_var}/lib/virtuoso/vsp/vsmx/*.css
+%{_var}/lib/virtuoso/vsp/*.css
+%{_var}/lib/virtuoso/vsp/*.html
+%{_var}/lib/virtuoso/vsp/robots.txt
+%{_var}/lib/virtuoso/vsp/admin/index_left.vsp
+%{_var}/lib/virtuoso/vsp/images/*.gif
+%{_var}/lib/virtuoso/vsp/images/*.jpg
+%{_var}/lib/virtuoso/vsp/images/*.png
+%{_var}/lib/virtuoso/vsp/vsmx/*.gif
+%{_var}/lib/virtuoso/vsp/vsmx/*.jpg
+%{_var}/lib/virtuoso/vsp/vsmx/*.vspx
+%{_var}/lib/virtuoso/vsp/vsmx/*.xsl
+%{_var}/lib/virtuoso/vsp/vsmx/*.css
 
 #--------------------------------------------------------------------
 
@@ -95,32 +94,32 @@ functionality.
 %defattr(0644,root,root,0755)
 #%{_datadir}/virtuoso/doc
 #%{_libdir}/virtuoso/plugins/*.a
-#%{_libdir}/virtuoso/hosting/*.a
+%{_libdir}/virtuoso/hosting/*.a
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.la
 %attr(0755,root,root) %{_libdir}/*.la
-#%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.la
-#%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.so
+%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.la
+%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.so
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.so
 %{_datadir}/virtuoso/vad/bpel_dav.vad
 #%{_datadir}/virtuoso/vad/demo_dav.vad
 #%{_datadir}/virtuoso/vad/doc_dav.vad
-#%{_datadir}/virtuoso/vad/isparql_dav.vad
-#%{_datadir}/virtuoso/vad/ods_addressbook_dav.vad
-#%{_datadir}/virtuoso/vad/ods_blog_dav.vad
-#%{_datadir}/virtuoso/vad/ods_bookmark_dav.vad
-#%{_datadir}/virtuoso/vad/ods_briefcase_dav.vad
-#%{_datadir}/virtuoso/vad/ods_calendar_dav.vad
-#%{_datadir}/virtuoso/vad/ods_community_dav.vad
-#%{_datadir}/virtuoso/vad/ods_discussion_dav.vad
-#%{_datadir}/virtuoso/vad/ods_feedmanager_dav.vad
-#%{_datadir}/virtuoso/vad/ods_framework_dav.vad
-#%{_datadir}/virtuoso/vad/ods_gallery_dav.vad
-#%{_datadir}/virtuoso/vad/ods_polls_dav.vad
-#%{_datadir}/virtuoso/vad/ods_webmail_dav.vad
-#%{_datadir}/virtuoso/vad/ods_wiki_dav.vad
+%{_datadir}/virtuoso/vad/isparql_dav.vad
+%{_datadir}/virtuoso/vad/ods_addressbook_dav.vad
+%{_datadir}/virtuoso/vad/ods_blog_dav.vad
+%{_datadir}/virtuoso/vad/ods_bookmark_dav.vad
+%{_datadir}/virtuoso/vad/ods_briefcase_dav.vad
+%{_datadir}/virtuoso/vad/ods_calendar_dav.vad
+%{_datadir}/virtuoso/vad/ods_community_dav.vad
+%{_datadir}/virtuoso/vad/ods_discussion_dav.vad
+%{_datadir}/virtuoso/vad/ods_feedmanager_dav.vad
+%{_datadir}/virtuoso/vad/ods_framework_dav.vad
+%{_datadir}/virtuoso/vad/ods_gallery_dav.vad
+%{_datadir}/virtuoso/vad/ods_polls_dav.vad
+%{_datadir}/virtuoso/vad/ods_webmail_dav.vad
+%{_datadir}/virtuoso/vad/ods_wiki_dav.vad
 %{_datadir}/virtuoso/vad/rdf_mappers_dav.vad
-#%{_datadir}/virtuoso/vad/sparql_demo_dav.vad
-#%{_datadir}/virtuoso/vad/syncml_dav.vad
+%{_datadir}/virtuoso/vad/sparql_demo_dav.vad
+%{_datadir}/virtuoso/vad/syncml_dav.vad
 %{_datadir}/virtuoso/vad/tutorial_dav.vad
 
 #--------------------------------------------------------------------
@@ -148,8 +147,7 @@ functionality.
 
 %setup -q -n %{name}-%{version}
 %patch1 -p0
-%patch2 -p0
-%patch3 -p0 -b .wformat
+#%patch2 -p0
 %patch4 -p0 -b .iodbc
 
 %build
@@ -157,7 +155,7 @@ functionality.
 ./autogen.sh
 
 %configure2_5x \
-	--with-iodbc=%_prefix
+	--with-iodbc=%_prefix --disable-demo-vad
 
 %make
 
@@ -177,8 +175,8 @@ mv %{buildroot}%{_libdir}/jdbc-3.0 %{buildroot}%{_libdir}/virtuoso/jars/jdbc3.0
 mv %{buildroot}%{_libdir}/jdbc-4.0 %{buildroot}%{_libdir}/virtuoso/jars/jdbc4.0
 mv %{buildroot}%{_libdir}/jena %{buildroot}%{_libdir}/virtuoso/jars/jena
 mv %{buildroot}%{_libdir}/sesame %{buildroot}%{_libdir}/virtuoso/jars/sesame
-#mkdir -p %{buildroot}%{_sysconfdir}/virtuoso
-#mv %{buildroot}%{_var}/lib/virtuoso/db/virtuoso.ini %{buildroot}%{_sysconfdir}/virtuoso/
+mkdir -p %{buildroot}%{_sysconfdir}/virtuoso
+mv %{buildroot}%{_var}/lib/virtuoso/db/virtuoso.ini %{buildroot}%{_sysconfdir}/virtuoso/
 
 %clean
 rm -rf %{buildroot}
