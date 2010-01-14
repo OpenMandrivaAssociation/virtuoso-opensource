@@ -2,7 +2,7 @@
 
 Name:       virtuoso-opensource
 Version:    5.0.12
-Release:    %mkrel 1
+Release:    %mkrel 3
 License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
@@ -23,7 +23,7 @@ BuildRequires: openssl-devel
 BuildRequires: iodbc-devel
 
 Suggests:       %name-conductor
-Suggests:       %name-applications
+Requires:       %name-applications
 Suggests:       %name-jars
 
 %description
