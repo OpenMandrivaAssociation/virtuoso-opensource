@@ -146,7 +146,7 @@ functionality.
 %prep
 
 %setup -q -n %{name}-%{version}
-#%patch4 -p0 -b .iodbc
+%patch4 -p0 -b .iodbc
 
 %build
 # autogen.sh because of patching Makefile.am and configure to unixODBC
