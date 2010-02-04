@@ -1,15 +1,13 @@
 %define Werror_cflags %nil
 
 Name:       virtuoso-opensource
-Version:    5.0.12
-Release:    %mkrel 3
+Version:    6.1.0
+Release:    %mkrel 1
 License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
 Source0:    %{name}-%{version}.tar.gz
-Patch1:     virtuoso-opensource-5.0.11-fix-make.patch
-Patch4:     virtuoso-opensource-5.0.11-extern-iodbc.patch
-Patch5:     virtuoso-opensource-5.0.12-fix-build.patch
+Patch4:     virtuoso-opensource-6.1.0-extern-iodbc.patch
 URL:        http://virtuoso.openlinksw.com/
 BuildRoot:  %{_tmppath}/%{name}-%{version}
 BuildRequires: openssl
@@ -48,6 +46,7 @@ also available as part of Virtuoso's SOA suite.
 %defattr(0644,root,root,0755)
 %doc AUTHORS CREDITS ChangeLog NEWS README
 %attr(0755,root,root) %{_bindir}/*
+%doc %{_datadir}/virtuoso/doc
 #conflicts with unixODBC
 %exclude %{_bindir}/isql
 %{_sysconfdir}/virtuoso/virtuoso.ini
@@ -121,6 +120,7 @@ functionality.
 %{_datadir}/virtuoso/vad/sparql_demo_dav.vad
 %{_datadir}/virtuoso/vad/syncml_dav.vad
 %{_datadir}/virtuoso/vad/tutorial_dav.vad
+%{_datadir}/virtuoso/vad/fct_dav.vad
 
 #--------------------------------------------------------------------
 
@@ -146,9 +146,7 @@ functionality.
 %prep
 
 %setup -q -n %{name}-%{version}
-%patch1 -p0
-%patch4 -p0 -b .iodbc
-%patch5 -p0
+#%patch4 -p0 -b .iodbc
 
 %build
 # autogen.sh because of patching Makefile.am and configure to unixODBC
