@@ -64,7 +64,6 @@ functionality.
 
 %files -n %name-conductor
 %defattr(0644,root,root,0755)
-%{_datadir}/virtuoso/vad/conductor_dav.vad
 %{_var}/lib/virtuoso/vsp/*.css
 %{_var}/lib/virtuoso/vsp/*.html
 %{_var}/lib/virtuoso/vsp/robots.txt
@@ -99,28 +98,6 @@ functionality.
 %attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.la
 %attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.so
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.so
-%{_datadir}/virtuoso/vad/bpel_dav.vad
-#%{_datadir}/virtuoso/vad/demo_dav.vad
-#%{_datadir}/virtuoso/vad/doc_dav.vad
-%{_datadir}/virtuoso/vad/isparql_dav.vad
-%{_datadir}/virtuoso/vad/ods_addressbook_dav.vad
-%{_datadir}/virtuoso/vad/ods_blog_dav.vad
-%{_datadir}/virtuoso/vad/ods_bookmark_dav.vad
-%{_datadir}/virtuoso/vad/ods_briefcase_dav.vad
-%{_datadir}/virtuoso/vad/ods_calendar_dav.vad
-%{_datadir}/virtuoso/vad/ods_community_dav.vad
-%{_datadir}/virtuoso/vad/ods_discussion_dav.vad
-%{_datadir}/virtuoso/vad/ods_feedmanager_dav.vad
-%{_datadir}/virtuoso/vad/ods_framework_dav.vad
-%{_datadir}/virtuoso/vad/ods_gallery_dav.vad
-%{_datadir}/virtuoso/vad/ods_polls_dav.vad
-%{_datadir}/virtuoso/vad/ods_webmail_dav.vad
-%{_datadir}/virtuoso/vad/ods_wiki_dav.vad
-%{_datadir}/virtuoso/vad/rdf_mappers_dav.vad
-%{_datadir}/virtuoso/vad/sparql_demo_dav.vad
-%{_datadir}/virtuoso/vad/syncml_dav.vad
-%{_datadir}/virtuoso/vad/tutorial_dav.vad
-%{_datadir}/virtuoso/vad/fct_dav.vad
 
 #--------------------------------------------------------------------
 
@@ -153,7 +130,7 @@ functionality.
 ./autogen.sh
 
 %configure2_5x \
-	--with-iodbc=%_prefix --disable-demo-vad
+	--with-iodbc=%_prefix --disable-all-vads 
 
 %make
 
