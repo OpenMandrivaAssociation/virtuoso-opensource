@@ -20,8 +20,7 @@ BuildRequires: gperf
 BuildRequires: libxml2-devel
 BuildRequires: openssl-devel
 BuildRequires: iodbc-devel
-
-Requires:       %name-applications
+Obsoletes:     %name-conductor < 6.1.0
 
 %description
 Virtuoso is a scalable cross-platform server that combines SQL/RDF/XML
@@ -43,44 +42,18 @@ also available as part of Virtuoso's SOA suite.
 
 %files -n %name
 %defattr(0644,root,root,0755)
-%doc AUTHORS CREDITS ChangeLog NEWS README
-%attr(0755,root,root) %{_bindir}/*
-%doc %{_datadir}/virtuoso/doc
+%attr(0755,root,root) %{_bindir}/virtuoso-t
 #conflicts with unixODBC
 %exclude %{_bindir}/isql
 %{_sysconfdir}/virtuoso/virtuoso.ini
+%{_libdir}/virtodbc_r.la
 
 #--------------------------------------------------------------------
 
-%package -n %name-conductor
-Summary: Virtuoso open source edition Server Pages
-Group: Development/Databases
-
-%description -n %name-conductor
-Virtuoso is a scalable cross-platform server that combines SQL/RDF/XML
-Data Management with Web Application Server and Web Services Platform
-functionality.
-
-%files -n %name-conductor
-%defattr(0644,root,root,0755)
-%{_var}/lib/virtuoso/vsp/*.css
-%{_var}/lib/virtuoso/vsp/*.html
-%{_var}/lib/virtuoso/vsp/robots.txt
-%{_var}/lib/virtuoso/vsp/admin/index_left.vsp
-%{_var}/lib/virtuoso/vsp/images/*.gif
-%{_var}/lib/virtuoso/vsp/images/*.jpg
-%{_var}/lib/virtuoso/vsp/images/*.png
-%{_var}/lib/virtuoso/vsp/vsmx/*.gif
-%{_var}/lib/virtuoso/vsp/vsmx/*.jpg
-%{_var}/lib/virtuoso/vsp/vsmx/*.vspx
-%{_var}/lib/virtuoso/vsp/vsmx/*.xsl
-%{_var}/lib/virtuoso/vsp/vsmx/*.css
-
-#--------------------------------------------------------------------
-
-%package -n %name-applications
-Summary: Virtuoso open source applications
-Group: Development/Databases
+%package -n  %name-applications
+Summary:     Virtuoso open source applications
+Group:       Development/Databases
+Conflicts:   %name < 6.1.0-2
 
 %description -n %name-applications
 Virtuoso is a scalable cross-platform server that combines SQL/RDF/XML
@@ -89,11 +62,27 @@ functionality.
 
 %files -n %name-applications
 %defattr(0644,root,root,0755)
-#%{_datadir}/virtuoso/doc
-#%{_libdir}/virtuoso/plugins/*.a
+%attr(0755,root,root) %{_bindir}/inifile
+%attr(0755,root,root) %{_bindir}/isql-iodbc
+%attr(0755,root,root) %{_bindir}/isqlw
+%attr(0755,root,root) %{_bindir}/isqlw-iodbc
+%attr(0755,root,root) %{_bindir}/odbc_mail
+%attr(0755,root,root) %{_bindir}/virt_mail
+%attr(0755,root,root) %{_bindir}/virtuoso-iodbc-t
+%{_datadir}/virtuoso/doc
+%doc %_docdir/virtuoso-opensource 
 %{_libdir}/virtuoso/hosting/*.a
-%attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.la
-%attr(0755,root,root) %{_libdir}/*.la
+%attr(0755,root,root) %{_libdir}/libvirtuoso-iodbc-t.la
+%attr(0755,root,root) %{_libdir}/libvirtuoso-t.la
+%attr(0755,root,root) %{_libdir}/virtodbc.la
+%attr(0755,root,root) %{_libdir}/virtodbcu.la
+%attr(0755,root,root) %{_libdir}/virtodbcu_r.la
+%attr(0755,root,root) %{_libdir}/virtuoso/plugins/libvirtuoso-iodbc-t.la
+%attr(0755,root,root) %{_libdir}/virtuoso/plugins/libvirtuoso-t.la
+%attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc.la
+%attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc_r.la
+%attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbcu.la
+%attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbcu_r.la
 %attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.la
 %attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.so
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.so
