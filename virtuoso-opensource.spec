@@ -8,6 +8,7 @@ Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
 Source0:    %{name}-%{version}.tar.gz
 Patch4:     virtuoso-opensource-6.1.0-extern-iodbc.patch
+Patch5:     virtuoso-opensource-6.1.0-nodemos_buildfix.patch
 URL:        http://virtuoso.openlinksw.com/
 BuildRoot:  %{_tmppath}/%{name}-%{version}
 BuildRequires: openssl
@@ -20,9 +21,7 @@ BuildRequires: libxml2-devel
 BuildRequires: openssl-devel
 BuildRequires: iodbc-devel
 
-Suggests:       %name-conductor
 Requires:       %name-applications
-Suggests:       %name-jars
 
 %description
 Virtuoso is a scalable cross-platform server that combines SQL/RDF/XML
@@ -124,6 +123,7 @@ functionality.
 
 %setup -q -n %{name}-%{version}
 %patch4 -p0 -b .iodbc
+%patch5 -p0
 
 %build
 # autogen.sh because of patching Makefile.am and configure to unixODBC
