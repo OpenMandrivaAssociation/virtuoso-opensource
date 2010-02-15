@@ -70,8 +70,6 @@ functionality.
 %attr(0755,root,root) %{_bindir}/virt_mail
 %attr(0755,root,root) %{_bindir}/virtuoso-iodbc-t
 %{_datadir}/virtuoso/doc
-%doc %_docdir/virtuoso-opensource 
-%{_libdir}/virtuoso/hosting/*.a
 %attr(0755,root,root) %{_libdir}/libvirtuoso-iodbc-t.la
 %attr(0755,root,root) %{_libdir}/libvirtuoso-t.la
 %attr(0755,root,root) %{_libdir}/virtodbc.la
@@ -83,8 +81,6 @@ functionality.
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc_r.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbcu.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbcu_r.la
-%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.la
-%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.so
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.so
 
 #--------------------------------------------------------------------
