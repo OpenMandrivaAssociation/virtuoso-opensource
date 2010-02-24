@@ -21,6 +21,7 @@ BuildRequires: libxml2-devel
 BuildRequires: openssl-devel
 BuildRequires: iodbc-devel
 Obsoletes:     %name-conductor < 6.1.0
+Conflicts:     %name-applications < 6.1.0-3
 
 %description
 Virtuoso is a scalable cross-platform server that combines SQL/RDF/XML
@@ -46,7 +47,8 @@ also available as part of Virtuoso's SOA suite.
 #conflicts with unixODBC
 %exclude %{_bindir}/isql
 %{_sysconfdir}/virtuoso/virtuoso.ini
-%{_libdir}/virtodbc_r.la
+%attr(0755,root,root) %{_libdir}/virtodbc_r.la
+%attr(0755,root,root) %{_libdir}/virtodbc_r.so
 
 #--------------------------------------------------------------------
 
@@ -82,6 +84,8 @@ functionality.
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbcu.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbcu_r.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.so
+%exclude %{_libdir}/virtodbc_r.la
+%exclude %{_libdir}/virtodbc_r.so
 
 #--------------------------------------------------------------------
 
