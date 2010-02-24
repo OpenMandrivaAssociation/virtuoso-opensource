@@ -2,7 +2,7 @@
 
 Name:       virtuoso-opensource
 Version:    6.1.0
-Release:    %mkrel 2
+Release:    %mkrel 3
 License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
