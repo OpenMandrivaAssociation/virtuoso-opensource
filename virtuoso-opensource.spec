@@ -83,7 +83,6 @@ functionality.
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbcu.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbcu_r.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.so
-%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*
 %exclude %{_libdir}/virtodbc_r.la
 %exclude %{_libdir}/virtuoso/plugins/virtodbc_r.*
 
