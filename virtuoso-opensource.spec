@@ -48,7 +48,7 @@ also available as part of Virtuoso's SOA suite.
 %exclude %{_bindir}/isql
 %{_sysconfdir}/virtuoso/virtuoso.ini
 %attr(0755,root,root) %{_libdir}/virtodbc_r.la
-%attr(0755,root,root) %{_libdir}/virtodbc_r.so
+%attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc_r.*
 
 #--------------------------------------------------------------------
 
@@ -80,12 +80,12 @@ functionality.
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/libvirtuoso-iodbc-t.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/libvirtuoso-t.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc.la
-%attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc_r.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbcu.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbcu_r.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.so
+%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*
 %exclude %{_libdir}/virtodbc_r.la
-%exclude %{_libdir}/virtodbc_r.so
+%exclude %{_libdir}/virtuoso/plugins/virtodbc_r.*
 
 #--------------------------------------------------------------------
 
