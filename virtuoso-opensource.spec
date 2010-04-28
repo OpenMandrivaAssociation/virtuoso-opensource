@@ -1,16 +1,14 @@
 %define Werror_cflags %nil
 
 Name:       virtuoso-opensource
-Version:    6.1.0
-Release:    %mkrel 6
+Version:    6.1.1
+Release:    %mkrel 1
 License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
 Source0:    %{name}-%{version}.tar.gz
 Patch4:     virtuoso-opensource-6.1.0-extern-iodbc.patch
 Patch5:     virtuoso-opensource-6.1.0-nodemos_buildfix.patch
-# add patch from fedora to fix build with openssl-1.0.0
-Patch6:     virtuoso-opensource-5.0.11-openssl.patch
 URL:        http://virtuoso.openlinksw.com/
 BuildRoot:  %{_tmppath}/%{name}-%{version}
 BuildRequires: openssl
@@ -105,16 +103,15 @@ functionality.
 %{_libdir}/virtuoso/jars/jdbc3.0/*.jar
 %{_libdir}/virtuoso/jars/jdbc4.0/*.jar
 %{_libdir}/virtuoso/jars/jena/*.jar
-%{_libdir}/virtuoso/jars/sesame/*.jar
+%{_libdir}/virtuoso/jars/sesame/*
+%{_libdir}/hibernate/virt_dialect.jar
 
 #--------------------------------------------------------------------
 
 %prep
-
 %setup -q -n %{name}-%{version}
 %patch4 -p0 -b .iodbc
 %patch5 -p0
-%patch6 -p1 -b .openssl
 
 %build
 # autogen.sh because of patching Makefile.am and configure to unixODBC
