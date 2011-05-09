@@ -1,8 +1,8 @@
 %define Werror_cflags %nil
 
 Name:       virtuoso-opensource
-Version:    6.1.2
-Release:    %mkrel 2
+Version:    6.1.3
+Release:    %mkrel 1
 License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
@@ -44,8 +44,6 @@ also available as part of Virtuoso's SOA suite.
 %files -n %name
 %defattr(0644,root,root,0755)
 %attr(0755,root,root) %{_bindir}/virtuoso-t
-#conflicts with unixODBC
-%exclude %{_bindir}/isql
 %{_sysconfdir}/virtuoso/virtuoso.ini
 %attr(0755,root,root) %{_libdir}/virtodbc_r.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc_r.*
@@ -140,6 +138,9 @@ mv %{buildroot}%{_libdir}/jena %{buildroot}%{_libdir}/virtuoso/jars/jena
 mv %{buildroot}%{_libdir}/sesame %{buildroot}%{_libdir}/virtuoso/jars/sesame
 mkdir -p %{buildroot}%{_sysconfdir}/virtuoso
 mv %{buildroot}%{_var}/lib/virtuoso/db/virtuoso.ini %{buildroot}%{_sysconfdir}/virtuoso/
+
+#conflicts with unixODBC
+rm -f  %{buildroot}%{_bindir}/isql
 
 %clean
 rm -rf %{buildroot}
