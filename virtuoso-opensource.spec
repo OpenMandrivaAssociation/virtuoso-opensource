@@ -1,8 +1,8 @@
 %define Werror_cflags %nil
 
 Name:       virtuoso-opensource
-Version:    6.1.3
-Release:    %mkrel 1
+Version:    6.1.4
+Release:    1
 License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
