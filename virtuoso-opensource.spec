@@ -10,7 +10,6 @@ Source0:    %{name}-%{version}.tar.gz
 Patch4:     virtuoso-opensource-6.1.0-extern-iodbc.patch
 Patch5:     virtuoso-opensource-6.1.0-nodemos_buildfix.patch
 URL:        http://virtuoso.openlinksw.com/
-BuildRoot:  %{_tmppath}/%{name}-%{version}
 BuildRequires: openssl
 BuildRequires: autoconf
 BuildRequires: automake
@@ -142,5 +141,3 @@ mv %{buildroot}%{_var}/lib/virtuoso/db/virtuoso.ini %{buildroot}%{_sysconfdir}/v
 #conflicts with unixODBC
 rm -f  %{buildroot}%{_bindir}/isql
 
-%clean
-rm -rf %{buildroot}
