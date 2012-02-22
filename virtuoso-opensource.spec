@@ -44,7 +44,6 @@ also available as part of Virtuoso's SOA suite.
 %defattr(0644,root,root,0755)
 %attr(0755,root,root) %{_bindir}/virtuoso-t
 %{_sysconfdir}/virtuoso/virtuoso.ini
-%attr(0755,root,root) %{_libdir}/virtodbc_r.la
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc_r.*
 
 #--------------------------------------------------------------------
@@ -69,18 +68,6 @@ functionality.
 %attr(0755,root,root) %{_bindir}/virt_mail
 %attr(0755,root,root) %{_bindir}/virtuoso-iodbc-t
 %{_datadir}/virtuoso/doc
-%attr(0755,root,root) %{_libdir}/libvirtuoso-iodbc-t.la
-%attr(0755,root,root) %{_libdir}/libvirtuoso-t.la
-%attr(0755,root,root) %{_libdir}/virtodbc.la
-%attr(0755,root,root) %{_libdir}/virtodbcu.la
-%attr(0755,root,root) %{_libdir}/virtodbcu_r.la
-%attr(0755,root,root) %{_libdir}/virtuoso/plugins/libvirtuoso-iodbc-t.la
-%attr(0755,root,root) %{_libdir}/virtuoso/plugins/libvirtuoso-t.la
-%attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc.la
-%attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbcu.la
-%attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbcu_r.la
-%attr(0755,root,root) %{_libdir}/virtuoso/plugins/*.so
-%exclude %{_libdir}/virtodbc_r.la
 %exclude %{_libdir}/virtuoso/plugins/virtodbc_r.*
 
 #--------------------------------------------------------------------
@@ -124,7 +111,6 @@ rm -rf %{buildroot}
 
 %makeinstall_std 
 mkdir -p %{buildroot}%{_libdir}/virtuoso/plugins
-mv %{buildroot}%{_libdir}/*.la %{buildroot}%{_libdir}/virtuoso/plugins/
 cp -f %{buildroot}%{_libdir}/virtuoso/plugins/* %{buildroot}%{_libdir}/
 
 rm -fr %{buildroot}%{_libdir}/*.a
