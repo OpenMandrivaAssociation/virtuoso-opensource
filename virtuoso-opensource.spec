@@ -44,7 +44,8 @@ also available as part of Virtuoso's SOA suite.
 %defattr(0644,root,root,0755)
 %attr(0755,root,root) %{_bindir}/virtuoso-t
 %{_sysconfdir}/virtuoso/virtuoso.ini
-%attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc_r.*
+%attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc*.*
+%attr(0755,root,root) %{_libdir}/virtuoso/hosting/im.so
 
 #--------------------------------------------------------------------
 
@@ -68,7 +69,7 @@ functionality.
 %attr(0755,root,root) %{_bindir}/virt_mail
 %attr(0755,root,root) %{_bindir}/virtuoso-iodbc-t
 %{_datadir}/virtuoso/doc
-%exclude %{_libdir}/virtuoso/plugins/virtodbc_r.*
+%exclude %{_libdir}/virtuoso/plugins/virtodbc*.*
 
 #--------------------------------------------------------------------
 
@@ -111,7 +112,7 @@ rm -rf %{buildroot}
 
 %makeinstall_std 
 mkdir -p %{buildroot}%{_libdir}/virtuoso/plugins
-cp -f %{buildroot}%{_libdir}/virtuoso/plugins/* %{buildroot}%{_libdir}/
+#cp -f %{buildroot}%{_libdir}/virtuoso/plugins/* %{buildroot}%{_libdir}/
 
 rm -fr %{buildroot}%{_libdir}/*.a
 mv %{buildroot}%{_libdir}/*.so %{buildroot}%{_libdir}/virtuoso/plugins/
@@ -126,4 +127,5 @@ mv %{buildroot}%{_var}/lib/virtuoso/db/virtuoso.ini %{buildroot}%{_sysconfdir}/v
 
 #conflicts with unixODBC
 rm -f  %{buildroot}%{_bindir}/isql
-
+rm -f  %{buildroot}%{_libdir}/*.la
+rm -f  %{buildroot}%{_libdir}/virtuoso/hosting/*.*a
