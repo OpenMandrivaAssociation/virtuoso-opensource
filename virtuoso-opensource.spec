@@ -1,12 +1,12 @@
 %define Werror_cflags %nil
 
 Name:       virtuoso-opensource
-Version:    6.1.4
+Version:    6.1.5
 Release:    1
 License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
-Source0:    %{name}-%{version}.tar.gz
+Source0:    http://downloads.sourceforge.net/project/virtuoso/virtuoso/%{version}/%{name}-%{version}.tar.gz
 Patch4:     virtuoso-opensource-6.1.0-extern-iodbc.patch
 Patch5:     virtuoso-opensource-6.1.0-nodemos_buildfix.patch
 URL:        http://virtuoso.openlinksw.com/
@@ -45,7 +45,7 @@ also available as part of Virtuoso's SOA suite.
 %attr(0755,root,root) %{_bindir}/virtuoso-t
 %{_sysconfdir}/virtuoso/virtuoso.ini
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc*.*
-#%attr(0755,root,root) %{_libdir}/virtuoso/hosting/im.so
+%attr(0755,root,root) %{_libdir}/virtuoso/hosting/im.so
 
 #--------------------------------------------------------------------
 
