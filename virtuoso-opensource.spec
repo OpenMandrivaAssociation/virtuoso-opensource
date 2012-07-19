@@ -45,7 +45,7 @@ also available as part of Virtuoso's SOA suite.
 %attr(0755,root,root) %{_bindir}/virtuoso-t
 %{_sysconfdir}/virtuoso/virtuoso.ini
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc*.*
-%attr(0755,root,root) %{_libdir}/virtuoso/hosting/im.so
+#%attr(0755,root,root) %{_libdir}/virtuoso/hosting/im.so
 
 #--------------------------------------------------------------------
 
