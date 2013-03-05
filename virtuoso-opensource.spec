@@ -9,6 +9,7 @@ Group:      Development/Databases
 Source0:    http://downloads.sourceforge.net/project/virtuoso/virtuoso/%{version}/%{name}-%{version}.tar.gz
 Patch4:     virtuoso-opensource-6.1.0-extern-iodbc.patch
 Patch5:     virtuoso-opensource-6.1.0-nodemos_buildfix.patch
+Patch6:     virtuoso-opensource-6.1.6-automake-1.13.patch
 URL:        http://virtuoso.openlinksw.com/
 BuildRequires: openssl
 BuildRequires: autoconf
@@ -97,6 +98,7 @@ functionality.
 %setup -q -n %{name}-%{version}
 %patch4 -p0 -b .iodbc
 %patch5 -p0
+%patch6 -p1
 
 %build
 # autogen.sh because of patching Makefile.am and configure to unixODBC

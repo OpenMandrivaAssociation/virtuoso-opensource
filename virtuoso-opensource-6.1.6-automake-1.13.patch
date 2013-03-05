@@ -1,0 +1,11 @@
+--- virtuoso-opensource-6.1.6/configure.in~	2013-01-14 17:42:59.315036056 +0800
++++ virtuoso-opensource-6.1.6/configure.in	2013-01-14 17:43:21.685620722 +0800
+@@ -36,7 +36,7 @@
+ AC_CONFIG_SRCDIR([libsrc/Dk.h])
+ AC_CONFIG_AUX_DIR([binsrc/config])
+ AC_CONFIG_MACRO_DIR([binsrc/config])
+-AM_CONFIG_HEADER([libsrc/Dk/config.h])
++AC_CONFIG_HEADERS([libsrc/Dk/config.h])
+ 
+ dnl
+ dnl You may need to change the next macro for older versions of automake:
