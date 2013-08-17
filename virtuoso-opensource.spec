@@ -20,6 +20,11 @@ BuildRequires: gperf
 BuildRequires: libxml2-devel
 BuildRequires: openssl-devel
 BuildRequires: iodbc-devel
+# temporary solution until
+# libtiprc not fixed
+%ifarch	%arm
+BuildRequires: tirpc-devel
+%endif
 Obsoletes:     %name-conductor < 6.1.0
 Conflicts:     %name-applications < 6.1.0-3
 
