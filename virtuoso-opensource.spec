@@ -112,11 +112,15 @@ functionality.
 %configure2_5x \
 	--with-iodbc=%_prefix --disable-all-vads 
 
+%ifarch %{ix86} x86_64
 %make
+%endif
+%ifarch %arm %mips
+%make LIBS="-ltirpc -lz -lm"
+%endif
+
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std 
 mkdir -p %{buildroot}%{_libdir}/virtuoso/plugins
 #cp -f %{buildroot}%{_libdir}/virtuoso/plugins/* %{buildroot}%{_libdir}/
