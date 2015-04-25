@@ -1,7 +1,7 @@
 %define Werror_cflags %nil
 
 Name:       virtuoso-opensource
-Version:    6.1.6
+Version:    7.1.0
 Release:    8
 License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
@@ -10,7 +10,7 @@ Source0:    http://downloads.sourceforge.net/project/virtuoso/virtuoso/%{version
 Patch4:     virtuoso-opensource-6.1.0-extern-iodbc.patch
 Patch5:     virtuoso-opensource-6.1.0-nodemos_buildfix.patch
 Patch6:     virtuoso-opensource-6.1.6-automake-1.13.patch
-URL:        http://virtuoso.openlinksw.com/
+Url:        http://virtuoso.openlinksw.com/
 BuildRequires: openssl
 BuildRequires: autoconf
 BuildRequires: automake
