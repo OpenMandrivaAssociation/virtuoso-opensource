@@ -25,6 +25,7 @@ BuildRequires: iodbc-devel
 %ifarch	%arm
 BuildRequires: tirpc-devel
 %endif
+ExclusiveArch:	x86_64 aarch64
 Obsoletes:     %name-conductor < 6.1.0
 Conflicts:     %name-applications < 6.1.0-3
 
