@@ -1,3 +1,4 @@
----
-sources:
+removed_sources:
   virtuoso-opensource-6.1.6.tar.gz: 03bc14b1627d16d76687f8b8659801966aab3fb4
+sources:
+  virtuoso-opensource-7.2.2.tar.gz: 2afd8985e91416cc1ec64c67ac388ae30b4e4c4a

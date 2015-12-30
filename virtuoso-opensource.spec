@@ -1,8 +1,8 @@
 %define Werror_cflags %nil
 
 Name:       virtuoso-opensource
-Version:    7.1.0
-Release:    10
+Version:    7.2.2
+Release:    1
 License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
@@ -50,8 +50,9 @@ also available as part of Virtuoso's SOA suite.
 %defattr(0644,root,root,0755)
 %attr(0755,root,root) %{_bindir}/virtuoso-t
 %{_sysconfdir}/virtuoso/virtuoso.ini
+%{_var}/lib/virtuoso
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc*.*
-#%attr(0755,root,root) %{_libdir}/virtuoso/hosting/im.so
+#attr(0755,root,root) %{_libdir}/virtuoso/hosting/im.so
 
 #--------------------------------------------------------------------
 
@@ -73,7 +74,6 @@ functionality.
 %attr(0755,root,root) %{_bindir}/isqlw-iodbc
 %attr(0755,root,root) %{_bindir}/odbc_mail
 %attr(0755,root,root) %{_bindir}/virt_mail
-%attr(0755,root,root) %{_bindir}/virtuoso-iodbc-t
 %{_datadir}/virtuoso/doc
 %exclude %{_libdir}/virtuoso/plugins/virtodbc*.*
 
@@ -93,7 +93,9 @@ functionality.
 %{_libdir}/virtuoso/jars/jdbc2.0/*.jar
 %{_libdir}/virtuoso/jars/jdbc3.0/*.jar
 %{_libdir}/virtuoso/jars/jdbc4.0/*.jar
+%{_libdir}/virtuoso/jars/jdbc4.1/*.jar
 %{_libdir}/virtuoso/jars/jena/*.jar
+%{_libdir}/virtuoso/jars/jena2/*.jar
 %{_libdir}/virtuoso/jars/sesame/*
 %{_libdir}/hibernate/virt_dialect.jar
 
@@ -101,9 +103,6 @@ functionality.
 
 %prep
 %setup -q -n %{name}-%{version}
-%patch4 -p0 -b .iodbc
-%patch5 -p0
-%patch6 -p1
 
 %build
 # autogen.sh because of patching Makefile.am and configure to unixODBC
@@ -131,7 +130,9 @@ mkdir -p %{buildroot}%{_libdir}/virtuoso/jars
 mv %{buildroot}%{_libdir}/jdbc-2.0 %{buildroot}%{_libdir}/virtuoso/jars/jdbc2.0
 mv %{buildroot}%{_libdir}/jdbc-3.0 %{buildroot}%{_libdir}/virtuoso/jars/jdbc3.0
 mv %{buildroot}%{_libdir}/jdbc-4.0 %{buildroot}%{_libdir}/virtuoso/jars/jdbc4.0
+mv %{buildroot}%{_libdir}/jdbc-4.1 %{buildroot}%{_libdir}/virtuoso/jars/jdbc4.1
 mv %{buildroot}%{_libdir}/jena %{buildroot}%{_libdir}/virtuoso/jars/jena
+mv %{buildroot}%{_libdir}/jena2 %{buildroot}%{_libdir}/virtuoso/jars/jena2
 mv %{buildroot}%{_libdir}/sesame %{buildroot}%{_libdir}/virtuoso/jars/sesame
 mkdir -p %{buildroot}%{_sysconfdir}/virtuoso
 mv %{buildroot}%{_var}/lib/virtuoso/db/virtuoso.ini %{buildroot}%{_sysconfdir}/virtuoso/
