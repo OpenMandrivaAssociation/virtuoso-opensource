@@ -22,7 +22,7 @@ BuildRequires: openssl-devel
 BuildRequires: iodbc-devel
 # temporary solution until
 # libtiprc not fixed
-%ifarch	%arm
+%ifarch	%armx
 BuildRequires: tirpc-devel
 %endif
 ExclusiveArch:	x86_64 aarch64
