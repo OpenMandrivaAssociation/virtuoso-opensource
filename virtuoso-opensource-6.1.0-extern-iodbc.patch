@@ -1,22 +1,20 @@
-Index: configure.in
-===================================================================
---- configure.in
-+++ configure.in	2010-02-04 09:31:49.000000000 +0100
-@@ -1833,7 +1833,7 @@
+--- virtuoso-opensource-7.2.4.2/configure.ac.omv~	2017-06-26 12:50:01.315271684 +0200
++++ virtuoso-opensource-7.2.4.2/configure.ac	2017-06-26 12:51:03.819819264 +0200
+@@ -2115,7 +2115,7 @@ AC_DEFINE(NO_UDBC_SDK,1, [Define if usin
  #
  if test "x$virt_do_iodbc" = "xyes"
  then
 -    iodbc_CPPFLAGS="-I$virt_iodbc_dir/include"
-+    iodbc_CPPFLAGS=`iodbc-config --cflags`
++    iodbc_CPPFLAGS="`pkg-config --cflags libiodbc`"
  
      saved_CPPFLAGS="$CPPFLAGS"
      CPPFLAGS="$iodbc_CPPFLAGS $CPPFLAGS"
-@@ -1842,7 +1842,7 @@
+@@ -2124,7 +2124,7 @@ then
  
      ccincl="$iodbc_CPPFLAGS $ccincl"
  
 -    iodbc_LDFLAGS="-L$virt_iodbc_dir/lib -liodbc -liodbcinst $LIBDL"
-+    iodbc_LDFLAGS=`iodbc-config --libs`
++    iodbc_LDFLAGS="`pkg-config --libs libiodbc`"
      AC_CHECK_LIB(iodbc, SQLTables,
  		 [
  		  virt_do_iodbc="yes"

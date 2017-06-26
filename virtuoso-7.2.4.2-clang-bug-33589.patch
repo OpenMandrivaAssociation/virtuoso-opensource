@@ -1,0 +1,11 @@
+--- virtuoso-opensource-7.2.4.2/libsrc/util/getdate.c.omv~	2017-06-26 10:25:43.889612931 +0200
++++ virtuoso-opensource-7.2.4.2/libsrc/util/getdate.c	2017-06-26 10:25:52.134420995 +0200
+@@ -1353,7 +1353,7 @@ yyparse (pc)
+ int yychar;
+ 
+ 
+-#if defined __GNUC__ && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
++#if !defined(__clang__) && defined __GNUC__ && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
+ /* Suppress an incorrect diagnostic about yylval being uninitialized.  */
+ # define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN \
+     _Pragma ("GCC diagnostic push") \

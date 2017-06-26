@@ -1,7 +1,7 @@
-Index: binsrc/vsp/Makefile.am
+Index: a/binsrc/vsp/Makefile.am
 ===================================================================
---- binsrc/vsp/Makefile.am
-+++ binsrc/vsp/Makefile.am	2010-02-15 14:46:32.000000000 +0100
+--- a/binsrc/vsp/Makefile.am
++++ b/binsrc/vsp/Makefile.am	2010-02-15 14:46:32.000000000 +0100
 @@ -24,6 +24,7 @@
  #dist_httproot_DATA = *.html *.css *.txt
  
@@ -19,10 +19,10 @@ Index: binsrc/vsp/Makefile.am
  
  uninstall-local:
  	rm -rf "$(DESTDIR)$(httprootdir)"/*
-Index: binsrc/samples/demo/Makefile.am
+Index: a/binsrc/samples/demo/Makefile.am
 ===================================================================
---- binsrc/samples/demo/Makefile.am
-+++ binsrc/samples/demo/Makefile.am	2010-02-15 14:45:24.000000000 +0100
+--- a/binsrc/samples/demo/Makefile.am
++++ b/binsrc/samples/demo/Makefile.am	2010-02-15 14:45:24.000000000 +0100
 @@ -164,6 +164,8 @@
  	chmod +x install_ini.sh
  	mkdir -p "$(DESTDIR)$(dbdir)"

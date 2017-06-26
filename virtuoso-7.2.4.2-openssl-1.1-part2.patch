@@ -1,0 +1,143 @@
+--- virtuoso-opensource-7.2.4.2/libsrc/Wi/bif_crypto.c.omv~	2017-06-26 11:44:17.038947455 +0200
++++ virtuoso-opensource-7.2.4.2/libsrc/Wi/bif_crypto.c	2017-06-26 12:11:35.441025166 +0200
+@@ -724,7 +724,7 @@ bio_to_strses (BIO * out_bio)
+   int len = BIO_get_mem_data (out_bio, &ptr);
+   int to_read = len, readed = 0;
+ 
+-  to_free = ((BUF_MEM *) out_bio->ptr)->data;
++  to_free = ((BUF_MEM *) BIO_get_data(out_bio))->data;
+   BIO_set_flags (out_bio, BIO_FLAGS_MEM_RDONLY);
+   CATCH_WRITE_FAIL (ses)
+     {
+@@ -736,7 +736,7 @@ bio_to_strses (BIO * out_bio)
+       } while (to_read > 0);
+     }
+   END_WRITE_FAIL (ses);
+-  ((BUF_MEM *) out_bio->ptr)->data = to_free;
++  ((BUF_MEM *) BIO_get_data(out_bio))->data = to_free;
+   BIO_clear_flags (out_bio, BIO_FLAGS_MEM_RDONLY);
+   return ses;
+ }
+@@ -771,7 +771,7 @@ bif_smime_verify (caddr_t * qst, caddr_t
+   if (DV_TYPE_OF (msg) == DV_STRING_SESSION)
+     {
+       in_bio = strses_to_bio ((dk_session_t *) msg);
+-      to_free = ((BUF_MEM *) in_bio->ptr)->data;
++      to_free = ((BUF_MEM *) BIO_get_data(in_bio))->data;
+       BIO_set_flags (in_bio, BIO_FLAGS_MEM_RDONLY);
+     }
+   else
+@@ -781,7 +781,7 @@ bif_smime_verify (caddr_t * qst, caddr_t
+       p7 = SMIME_read_PKCS7 (in_bio, &data_bio);
+       if (to_free)
+ 	{
+-	  ((BUF_MEM *) in_bio->ptr)->data = to_free;
++	  ((BUF_MEM *) BIO_get_data(in_bio))->data = to_free;
+ 	  BIO_clear_flags (in_bio, BIO_FLAGS_MEM_RDONLY);
+ 	}
+       BIO_free (in_bio);
+@@ -1648,11 +1648,13 @@ bif_get_certificate_info (caddr_t * qst,
+       {
+ 	const unsigned char *s;
+ 	int i, n;
+-	const ASN1_STRING *sig = cert->signature;
+-	X509_ALGOR *sigalg = cert->sig_alg;
++	const ASN1_BIT_STRING *sig;
++	const X509_ALGOR *sigalg;
+ 	char buf[80];
+ 	caddr_t val;
+ 
++	X509_get0_signature(&sig, &sigalg, cert);
++
+         i2t_ASN1_OBJECT(buf,sizeof (buf), sigalg->algorithm);
+ 
+ 	n = sig->length;
+@@ -1673,11 +1675,11 @@ bif_get_certificate_info (caddr_t * qst,
+ 	if (k)
+ 	  {
+ #ifdef EVP_PKEY_RSA
+-	    if (k->type == EVP_PKEY_RSA)
++	    if (EVP_PKEY_id(k) == EVP_PKEY_RSA)
+ 	      {
+ 		char *data_ptr;
+ 		int len;
+-		RSA *x = k->pkey.rsa;
++		RSA *x = EVP_PKEY_get0_RSA(k);
+ 		b = BIO_new (BIO_s_mem());
+ 		i2d_RSA_PUBKEY_bio (b, x);
+ 		len = BIO_get_mem_data (b, &data_ptr);
+--- virtuoso-opensource-7.2.4.2/libsrc/Wi/http.c.omv~	2017-06-26 12:12:28.933786186 +0200
++++ virtuoso-opensource-7.2.4.2/libsrc/Wi/http.c	2017-06-26 12:13:05.299943876 +0200
+@@ -9896,7 +9896,7 @@ bif_https_renegotiate (caddr_t *qst, cad
+ 	  cli_ssl_get_error_string (err_buf, sizeof (err_buf));
+ 	  sqlr_new_error ("42000", "..002", "SSL_do_handshake failed %s", err_buf);
+ 	}
+-      ssl->state = SSL_ST_ACCEPT;
++      SSL_set_accept_state (ssl);
+       while (SSL_renegotiate_pending (ssl) && ctr < 1000)
+ 	{
+ 	  timeout_t to = { 0, 1000 };
+--- virtuoso-opensource-7.2.4.2/libsrc/Wi/xmlenc.c.omv~	2017-06-26 12:13:59.451689605 +0200
++++ virtuoso-opensource-7.2.4.2/libsrc/Wi/xmlenc.c	2017-06-26 12:23:26.560464741 +0200
+@@ -2315,12 +2315,12 @@ bif_xenc_key_rsa_read (caddr_t * qst, ca
+     {
+       in = BIO_new_mem_buf (key_base64, len);
+       pkey = d2i_PUBKEY_bio (in, NULL);
+-      if (pkey && pkey->type == EVP_PKEY_RSA)
+-	p = pkey->pkey.rsa;
++      if (pkey && EVP_PKEY_id(pkey) == EVP_PKEY_RSA)
++	p = EVP_PKEY_get0_RSA(pkey);
+       BIO_reset (in);
+       pkkey = d2i_PrivateKey_bio (in, NULL);
+-      if (pkkey && pkkey->type == EVP_PKEY_RSA)
+-	r = pkkey->pkey.rsa;
++      if (pkkey && EVP_PKEY_id(pkkey) == EVP_PKEY_RSA)
++	r = EVP_PKEY_get0_RSA(pkkey);
+       BIO_free (in);
+     }
+   else
+@@ -7066,19 +7066,19 @@ bif_xenc_pkcs12_export (caddr_t * qst, c
+   if (export_chain)
+     {
+       int i;
+-      X509_STORE_CTX store_ctx;
+-      X509_STORE_CTX_init (&store_ctx, CA_certs, x, NULL);
+-      if (X509_verify_cert (&store_ctx) > 0)
+-	chain = X509_STORE_CTX_get1_chain (&store_ctx);
++      X509_STORE_CTX *store_ctx = X509_STORE_CTX_new();
++      X509_STORE_CTX_init (store_ctx, CA_certs, x, NULL);
++      if (X509_verify_cert (store_ctx) > 0)
++	chain = X509_STORE_CTX_get1_chain (store_ctx);
+       else
+ 	{
+ 	  const char *err_str;
+-	  err_str = X509_verify_cert_error_string (store_ctx.error);
++	  err_str = X509_verify_cert_error_string (X509_STORE_CTX_get_error(store_ctx));
+ 	  *err_ret = srv_make_new_error ("22023", "XENCX", "X509 error: %s", err_str);
+-	  X509_STORE_CTX_cleanup (&store_ctx);
++	  X509_STORE_CTX_free (store_ctx);
+ 	  goto err;
+ 	}
+-      X509_STORE_CTX_cleanup (&store_ctx);
++      X509_STORE_CTX_free (store_ctx);
+       if (chain)
+ 	{
+ 	  certs = sk_X509_new_null ();
+@@ -7641,14 +7641,14 @@ bif_xenc_x509_ca_certs_list (caddr_t * q
+   sec_check_dba ((QI*)qst, me);
+   in = BIO_new (BIO_s_mem ());
+   mutex_enter (xenc_keys_mtx);
+-  certs = CA_certs->objs;
++  certs = X509_STORE_get0_objects(CA_certs);
+   len = sk_X509_OBJECT_num (certs);
+   for (i = 0; i < len; i++)
+     {
+       X509_OBJECT * obj = sk_X509_OBJECT_value (certs, i);
+-      if (obj->type == X509_LU_X509)
++      if (X509_OBJECT_get_type(obj) == X509_LU_X509)
+ 	{
+-	  X509 *x = obj->data.x509;
++	  X509 *x = X509_OBJECT_get0_X509(obj);
+ 	  caddr_t itm;
+ 	  int blen;
+ 	  BIO_reset (in);
