@@ -29,6 +29,8 @@ BuildRequires: tirpc-devel
 %endif
 Obsoletes:     %name-conductor < 6.1.0
 Conflicts:     %name-applications < 6.1.0-3
+# Virtuoso 7.x is 64bit only. For 32bit platforms, use 6.x
+ExclusiveArch:	x86_64 aarch64
 
 %description
 Virtuoso is a scalable cross-platform server that combines SQL/RDF/XML
