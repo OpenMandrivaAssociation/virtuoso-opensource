@@ -24,10 +24,9 @@ BuildRequires: openssl-devel
 BuildRequires: iodbc-devel
 # temporary solution until
 # libtiprc not fixed
-%ifarch	%armx
+%ifarch	%armx mips
 BuildRequires: tirpc-devel
 %endif
-ExclusiveArch:	x86_64 aarch64
 Obsoletes:     %name-conductor < 6.1.0
 Conflicts:     %name-applications < 6.1.0-3
 
@@ -120,7 +119,7 @@ functionality.
 %ifarch %{ix86} x86_64
 %make
 %endif
-%ifarch %arm %mips
+%ifarch %armx %mips
 %make LIBS="-ltirpc -lz -lm"
 %endif
 
