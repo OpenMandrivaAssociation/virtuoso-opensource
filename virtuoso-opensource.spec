@@ -109,7 +109,7 @@ functionality.
 
 %prep
 %setup -q -n %{name}-%{version}
-%apply_patches
+%autopatch -p1
 
 %build
 # autogen.sh because of patching Makefile.am and configure to unixODBC
