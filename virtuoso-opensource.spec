@@ -1,27 +1,22 @@
 %define Werror_cflags %nil
 
 Name:       virtuoso-opensource
-Version:    7.2.4.2
-Release:    3
+Version:    7.2.6
+Release:    1
 License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
 Source0:    http://downloads.sourceforge.net/project/virtuoso/virtuoso/%{version}/%{name}-%{version}.tar.gz
-# https://github.com/openlink/virtuoso-opensource/pull/583
-Patch0:     https://github.com/openlink/virtuoso-opensource/commit/e563d45e839d9b11565d28e8b605272f6dbf385c.patch
-Patch1:     virtuoso-7.2.4.2-clang-bug-33589.patch
-Patch2:     virtuoso-7.2.4.2-openssl-1.1-part2.patch
-Patch4:     virtuoso-opensource-6.1.0-extern-iodbc.patch
 Url:        http://virtuoso.openlinksw.com/
-BuildRequires: openssl
+BuildRequires: pkgconfig(openssl)
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: bison
 BuildRequires: flex
 BuildRequires: gperf
-BuildRequires: libxml2-devel
-BuildRequires: openssl-devel
-BuildRequires: iodbc-devel
+BuildRequires: pkgconfig(libxml-2.0)
+BuildRequires: pkgconfig(libiodbc)
+
 # temporary solution until
 # libtiprc not fixed
 %ifarch	%armx mips
@@ -56,7 +51,7 @@ also available as part of Virtuoso's SOA suite.
 %{_sysconfdir}/virtuoso/virtuoso.ini
 %{_var}/lib/virtuoso
 %attr(0755,root,root) %{_libdir}/virtuoso/plugins/virtodbc*.*
-#attr(0755,root,root) %{_libdir}/virtuoso/hosting/im.so
+%attr(0755,root,root) %{_libdir}/virtuoso/hosting/*.so
 
 #--------------------------------------------------------------------
 
@@ -94,48 +89,47 @@ functionality.
 
 %files -n %name-jars
 %defattr(0644,root,root,0755)
-%{_libdir}/virtuoso/jars/jdbc2.0/*.jar
-%{_libdir}/virtuoso/jars/jdbc3.0/*.jar
 %{_libdir}/virtuoso/jars/jdbc4.0/*.jar
 %{_libdir}/virtuoso/jars/jdbc4.1/*.jar
 %{_libdir}/virtuoso/jars/jdbc4.2/*.jar
+%{_libdir}/jdbc-4.3/*.jar
 %{_libdir}/virtuoso/jars/jena/*.jar
 %{_libdir}/virtuoso/jars/jena2/*.jar
 %{_libdir}/virtuoso/jars/jena3/*.jar
 %{_libdir}/virtuoso/jars/sesame/*
 %{_libdir}/hibernate/virt_dialect.jar
+%{_libdir}/rdf4j/virt_rdf4j.jar
+%{_libdir}/rdf4j/*.xsl
 
 #--------------------------------------------------------------------
 
 %prep
-%setup -q -n %{name}-%{version}
-%autopatch -p1
+%autosetup -p1 -n %{name}-%{version}
 
 %build
 # autogen.sh because of patching Makefile.am and configure to unixODBC
 ./autogen.sh
 
-%configure2_5x \
-	--with-iodbc=%_prefix --disable-all-vads 
-
+%configure \
+	--with-iodbc=%_prefix --disable-all-vads \
+	--without-internal-zlib \
+	--disable-openssl
 %ifarch %{ix86} x86_64
-%make
+%make_build
 %endif
 %ifarch %armx %mips
-%make LIBS="-ltirpc -lz -lm"
+%make_build  LIBS="-ltirpc -lz -lm"
 %endif
 
 
 %install
 %makeinstall_std 
 mkdir -p %{buildroot}%{_libdir}/virtuoso/plugins
-#cp -f %{buildroot}%{_libdir}/virtuoso/plugins/* %{buildroot}%{_libdir}/
 
 rm -fr %{buildroot}%{_libdir}/*.a
+rm -fr %{buildroot}%{_libdir}/virtuoso/cli/OpenLink.Data.Virtuoso.dll
 mv %{buildroot}%{_libdir}/*.so %{buildroot}%{_libdir}/virtuoso/plugins/
 mkdir -p %{buildroot}%{_libdir}/virtuoso/jars
-mv %{buildroot}%{_libdir}/jdbc-2.0 %{buildroot}%{_libdir}/virtuoso/jars/jdbc2.0
-mv %{buildroot}%{_libdir}/jdbc-3.0 %{buildroot}%{_libdir}/virtuoso/jars/jdbc3.0
 mv %{buildroot}%{_libdir}/jdbc-4.0 %{buildroot}%{_libdir}/virtuoso/jars/jdbc4.0
 mv %{buildroot}%{_libdir}/jdbc-4.1 %{buildroot}%{_libdir}/virtuoso/jars/jdbc4.1
 mv %{buildroot}%{_libdir}/jdbc-4.2 %{buildroot}%{_libdir}/virtuoso/jars/jdbc4.2
