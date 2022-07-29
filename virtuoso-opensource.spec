@@ -14,6 +14,7 @@ BuildRequires: automake
 BuildRequires: bison
 BuildRequires: flex
 BuildRequires: gperf
+BuildRequires: openssl
 BuildRequires: pkgconfig(libxml-2.0)
 BuildRequires: pkgconfig(libiodbc)
 BuildRequires: pkgconfig(openssl)
