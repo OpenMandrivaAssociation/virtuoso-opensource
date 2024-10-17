@@ -7,7 +7,7 @@ License:    GPLv2
 Summary:    OpenLink Virtuoso Database System Open-Source Edition
 Group:      Development/Databases
 Source0:    http://downloads.sourceforge.net/project/virtuoso/virtuoso/%{version}/%{name}-%{version}.tar.gz
-Url:        http://virtuoso.openlinksw.com/
+Url:        https://virtuoso.openlinksw.com/
 BuildRequires: pkgconfig(openssl)
 BuildRequires: autoconf
 BuildRequires: automake
